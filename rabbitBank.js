@@ -13,7 +13,7 @@ amqp.connect(url2, function (err, conn) {
 
     console.log(' [*] Waiting for messages in %s. To exit press CTRL+C', ex);
     ch.consume(ex, function (msg) {
-
+      console.log('in bank consume : ', msg.properties);
       var interest = calculateRate((JSON.parse(msg.content)).loanRequest.creditScore);
       var obj =
       {
@@ -25,9 +25,9 @@ amqp.connect(url2, function (err, conn) {
       };
 
       ch.assertQueue(msg.properties.replyTo, { durable: true });
-      ch.sendToQueue(msg.properties.replyTo, new Buffer(JSON.stringify(obj)));
+      ch.sendToQueue(msg.properties.replyTo,  new Buffer(JSON.stringify(obj)), { correlationId: msg.properties.correlationId});
 
-    }, { noAck: true });
+    }, { noAck: false });
   });
 });
 
