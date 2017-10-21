@@ -8,7 +8,7 @@ amqp.connect(url2, function (err, conn) {
 
     ch.assertExchange(ex, 'fanout', { durable: true });
     ch.checkExchange(ex, function (err, ok) {
-        console.log('its working!');
+        console.log('exchange running.');
       });
 
     console.log(' [*] Waiting for messages in %s. To exit press CTRL+C', ex);
@@ -24,6 +24,7 @@ amqp.connect(url2, function (err, conn) {
         }
       };
 
+      ch.bindQueue(msg.properties.replyTo, ex, '');
       ch.assertQueue(msg.properties.replyTo, { durable: true });
       ch.sendToQueue(msg.properties.replyTo,  new Buffer(JSON.stringify(obj)), { correlationId: msg.properties.correlationId});
 
