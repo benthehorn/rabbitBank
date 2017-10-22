@@ -37,35 +37,34 @@ function calculateRate(creditScore) {
   switch (true)
   {
   case (creditScore <= 100):
-    interestRate = (Math.random() * 20);
+    interestRate = 10.5;
 
   break;
   case (creditScore >= 200 && creditScore < 300):
-    interestRate = (Math.random() * 16);
+    interestRate = 8.5;
 
   break;
   case (creditScore >= 300 && creditScore < 400):
-    interestRate = (Math.random() * 12);
+    interestRate = 6.5;
 
   break;
   case (creditScore >= 400 && creditScore < 500):
-    interestRate = (Math.random() * 8);
-    console.log('4');
+    interestRate = 5.5;
   break;
   case (creditScore >= 500 && creditScore < 600):
-    interestRate = (Math.random() * 4);
+    interestRate = 4.34;
 
   break;
   case (creditScore >= 600 && creditScore < 700):
-    interestRate = (Math.random());
+    interestRate = 3.45;
 
   break;
   case (creditScore >= 700 && creditScore < 800):
-    interestRate = (Math.random() / 4);
+    interestRate = 1.2;
 
   break;
   case (creditScore === 800):
-    interestRate = (Math.random() / 8);
+    interestRate = 0.5;
 
   break;
 
